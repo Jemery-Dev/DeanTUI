@@ -3,8 +3,8 @@ use crate::models::time_signature::TimeSignature;
 use crate::models::note::NoteName;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Tablature {
-    name: String, // The name of the tablature
-    strings: Vec<GuitarString> // List of all strings of the tab
+    pub(crate) name: String, // The name of the tablature
+    pub(crate) strings: Vec<GuitarString> // List of all strings of the tab
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GuitarString { // Struct for guitar strings
@@ -18,7 +18,7 @@ pub struct Measure {
     time_signature: TimeSignature, // Time signature for the measure
     notes: Vec<Note> // All notes for the measure
 }
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Copy, Clone, Serialize, Deserialize)]
 pub struct Note {
     name: NoteName,
     fret_position: u16, // Position on the string
