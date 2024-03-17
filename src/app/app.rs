@@ -17,6 +17,7 @@ pub struct App<'a> {
     pub state: AppState,
     phantom: PhantomData<&'a ()>,
     // Add more vars after
+    pub numberstr: String,
 }
 
 impl<'a> App<'a> {
@@ -29,6 +30,7 @@ impl<'a> App<'a> {
             should_quit: false,
             state: AppState::Normal,
             phantom: Default::default(),
+            numberstr: String::new()
         }
     }
 
@@ -58,6 +60,7 @@ impl<'a> App<'a> {
             AppState::Normal => self.ui(frame),
             AppState::Main => self.ui(frame),
             AppState::NewProject => self.ui_newproject(frame),
+            AppState::EditingStrings => self.ui_editingStrings(frame),
             _ => {}, // Handle other states here
         })?;
         Ok(())

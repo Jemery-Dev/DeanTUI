@@ -19,4 +19,5 @@ pub enum AppState{
 
     #[strum(to_string = "Playing tablature")]
     PlayingTab,
+    EditingStrings,
 }

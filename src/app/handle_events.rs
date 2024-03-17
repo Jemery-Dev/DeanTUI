@@ -18,18 +18,38 @@ use crate::app::app_states::AppState;
 
                         AppState::NewProject => {
                             if let Some(mut tab) = self.tab.take() {
+                                let mut selected_value:u32 = 1; // To switch between inputs
                                 match key.code {
                                     KeyCode::Char(c) => {
-                                        tab.name.push(c);
-                                        self.tab = Some(tab);
+                                        match selected_value {
+                                            1 =>{
+                                                tab.name.push(c);
+                                                self.tab = Some(tab);
+                                            }
+                                            2 =>{
+                                                self.numberstr.push(c);
+                                            }
+                                            _ => {}
+                                        }
                                     }
                                     KeyCode::Backspace => {
-                                        tab.name.pop();
-                                        self.tab = Some(tab);
+                                        match selected_value {
+                                            1 =>{
+                                                tab.name.pop();
+                                                self.tab = Some(tab);
+                                            }
+                                            2 =>{
+                                                self.numberstr.pop();
+                                            }
+                                            _ => {}
+                                        }
                                     }
                                     KeyCode::Enter => {
                                         if !tab.name.is_empty() {
-
+                                            selected_value = selected_value +1;
+                                            if(selected_value == 3){
+                                                self.state = AppState::EditingStrings;
+                                            }
                                         }
                                     }
                                     KeyCode::Esc => self.state = AppState::Normal,

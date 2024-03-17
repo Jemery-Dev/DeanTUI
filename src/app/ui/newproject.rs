@@ -39,5 +39,41 @@ impl App<'_> {
             .wrap(Wrap { trim: true });
 
         frame.render_widget(project_name_input, chunks[1]);
+
+
+    }
+
+
+    pub fn ui_editingStrings(&mut self, frame: &mut Frame) {
+        let chunks = Layout::default()
+            .direction(Direction::Vertical)
+            .constraints([
+                Constraint::Length(3), // Title
+                Constraint::Length(3), // Project Name
+                Constraint::Length(3) //
+            ])
+            .split(frame.size());
+
+        let title_block = Block::default()
+            .borders(Borders::ALL)
+            .style(Style::default());
+
+        let title = Paragraph::new(Text::styled(
+            "Enter the note for each strings",
+            Style::default().fg(SLATE.c900),
+        ))
+            .block(title_block);
+
+        frame.render_widget(title, chunks[0]);
+        /* for(i in self.numberstr.parse().unwrap()){
+            let string = Paragraph::new(Text::raw(
+                self.tab.as_ref().map_or("", |t| &t.strings[i])
+            ))
+                .block(Block::default().borders(Borders::ALL))
+                .wrap(Wrap { trim: true });
+        }
+        frame.render_widget(string, chunks[1]); */
     }
 }
+
+

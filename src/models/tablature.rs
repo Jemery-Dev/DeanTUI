@@ -9,7 +9,7 @@ pub struct Tablature {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GuitarString { // Struct for guitar strings
     name: NoteName,
-    max_fret_position: u16, // Max number for the frest (Usually around 21~24)
+    max_fret_position: u16, // Max number for the frets (Usually around 21~24)
     measures: Vec<Measure>
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
